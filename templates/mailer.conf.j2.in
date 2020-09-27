@@ -1,0 +1,12 @@
+# {{ dma_mailer_cfg_file }}
+# {{ ansible_managed }}
+
+sendmail    {{ dma_exec }}
+send-mail   {{ dma_exec }}
+mailq       {{ dma_exec }}
+newaliases  {{ dma_exec }}
+hoststat    /usr/bin/true
+purgestat   /usr/bin/true
+
+# vim: set sw=2 ts=2 et :
+# eof

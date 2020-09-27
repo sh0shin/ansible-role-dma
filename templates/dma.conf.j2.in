@@ -1,0 +1,29 @@
+# {{ dma_cfg_file }}
+# {{ ansible_managed }}
+
+{% for opt, val in dma_cfg_defaults.items()                                  %}
+{%  if dma_cfg[opt] is defined                                               %}
+{%    set val = dma_cfg[opt]                                                 %}
+{%  endif                                                                    %}
+{%  if val is sameas true                                                    %}
+{{ opt }}
+{%  elif val is sameas false                                                 %}
+#{{ opt }}
+{%  elif val is string or val is number                                      %}
+{{ opt }} {{ val }}
+{%  endif                                                                    %}
+{% endfor                                                                    %}
+{% for opt, val in dma_cfg.items()                                           %}
+{%  if opt not in dma_cfg_defaults                                           %}
+{%    if val is sameas true                                                  %}
+{{ opt }}
+{%    elif val is sameas false                                               %}
+#{{ opt }}
+{%    elif val is string or val is number                                    %}
+{{ opt }} {{ val }}
+{%    endif                                                                  %}
+{%  endif                                                                    %}
+{% endfor                                                                    %}
+
+# vim: set sw=2 ts=2 et :
+# eof

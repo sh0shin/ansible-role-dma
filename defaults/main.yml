@@ -1,0 +1,54 @@
+---
+
+# enabled
+dma_enabled: no
+
+# mode/owner/group/backup defaults
+dma_file_mode: "0440"
+dma_dir_mode: "0755"
+dma_owner: "root"
+dma_group: "root"
+dma_backup: yes
+
+# packages
+dma_packages_freebsd: [] # using base
+#  - mail/dma
+
+# config
+dma_cfg_root: "/etc/dma"
+dma_exec: "/usr/libexec/dma"
+dma_aliases: "/etc/aliases"
+dma_spooldir: "/var/spool/dma"
+
+# mailer.conf (FreeBSD)
+dma_mailer_cfg_file: "/usr/local/etc/mail/mailer.conf"
+dma_mailer_cfg_file_mode: "0444"
+
+# dma config
+dma_cfg_file: "{{ dma_cfg_root }}/dma.conf"
+dma_auth_file: "{{ dma_cfg_root }}/auth.conf"
+
+dma_cfg: {}
+dma_cfg_defaults:
+  SMARTHOST: no
+  PORT: 25
+  ALIASES: '{{ dma_aliases }}'
+  SPOOLDIR: '{{ dma_spooldir }}'
+  AUTHPATH: '{{ dma_auth_file }}'
+  SECURETRANSFER: yes
+  STARTTLS: yes
+  OPPORTUNISTIC_TLS: no
+  CERTFILE: no
+  SECURE: no
+  DEFER: no
+  FULLBOUNCE: no
+  MAILNAME: '{{ inventory_hostname }}'
+  MASQUERADE: '{{ inventory_hostname }}'
+  NULLCLIENT: no
+
+dma_auth_user: ansible
+dma_auth_smarthost: localhost
+dma_auth_password: Ansible123!
+
+# vim: set syn=yaml sw=2 ts=2 et colorcolumn=160 :
+# eof

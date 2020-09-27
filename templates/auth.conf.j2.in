@@ -1,0 +1,7 @@
+# {{ dma_auth_file }}
+# {{ ansible_managed }}
+
+{{ dma_auth_user }}|{{ dma_auth_smarthost }}:{{ dma_auth_password }}
+
+# vim: set sw=2 ts=2 et :
+# eof
