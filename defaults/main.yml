@@ -39,7 +39,7 @@ dma_cfg_defaults:
   STARTTLS: yes
   OPPORTUNISTIC_TLS: no
   CERTFILE: no
-  SECURE: no
+  INSECURE: no
   DEFER: no
   FULLBOUNCE: no
   MAILNAME: '{{ inventory_hostname }}'
