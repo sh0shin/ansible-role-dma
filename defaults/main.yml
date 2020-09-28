@@ -17,7 +17,7 @@ dma_packages_freebsd: [] # using base
 # config
 dma_cfg_root: "/etc/dma"
 dma_exec: "/usr/libexec/dma"
-dma_aliases: "/etc/aliases"
+dma_aliases_file: "{{ dma_cfg_root }}/aliases"
 dma_spooldir: "/var/spool/dma"
 
 # mailer.conf (FreeBSD)
@@ -32,7 +32,7 @@ dma_cfg: {}
 dma_cfg_defaults:
   SMARTHOST: no
   PORT: 25
-  ALIASES: '{{ dma_aliases }}'
+  ALIASES: '{{ dma_aliases_file }}'
   SPOOLDIR: '{{ dma_spooldir }}'
   AUTHPATH: '{{ dma_auth_file }}'
   SECURETRANSFER: yes
@@ -49,6 +49,10 @@ dma_cfg_defaults:
 dma_auth_user: ansible
 dma_auth_smarthost: localhost
 dma_auth_password: Ansible123!
+
+dma_aliases:
+  root: root@localhost
+  "*": root@localhost
 
 # vim: set syn=yaml sw=2 ts=2 et colorcolumn=160 :
 # eof

@@ -125,5 +125,33 @@
         and ansible_os_family | string in dma_os_family_supported
   tags: [ dma ]
 
+- name: dma aliases (template)
+  template:
+    dest: '{{ dma_aliases_file }}'
+    src: "{{ lookup('first_found', params) }}"
+    #
+    mode: '{{ dma_aliases_file_mode | default(dma_file_mode) }}'
+    owner: '{{ dma_aliases_file_owner | default(dma_owner) }}'
+    group: '{{ dma_aliases_file_group | default(dma_group) }}'
+    backup: '{{ dma_aliases_file_backup | default(dma_backup) }}'
+    validate: '{{ dma_aliases_file_validate | default(omit) }}'
+  vars:
+    tpl_default: '{{ dma_aliases_file | basename }}'
+    tpl_presence: '{{ dma_aliases_file_template | default(tpl_default) }}'
+    params:
+      files:
+        - '{{ tpl_presence }}.{{ inventory_hostname }}.j2'
+        - '{{ tpl_presence }}.{{ ansible_distribution }}-{{ ansible_distribution_version | default(0) }}.j2'
+        - '{{ tpl_presence }}.{{ ansible_distribution }}-{{ ansible_distribution_major_version | default(0) }}.j2'
+        - '{{ tpl_presence }}.{{ ansible_distribution }}.j2'
+        - '{{ tpl_presence }}.{{ ansible_os_family }}.j2'
+        - '{{ tpl_presence }}.j2'
+        - '{{ tpl_presence }}.j2.in' # role default
+      paths:
+        - 'templates'
+  when: dma_enabled
+        and ansible_os_family | string in dma_os_family_supported
+  tags: [ dma ]
+
 # vim: set syn=yaml sw=2 ts=2 et colorcolumn=160 :
 # eof

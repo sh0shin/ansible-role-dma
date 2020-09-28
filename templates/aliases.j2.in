@@ -1,0 +1,9 @@
+# {{ dma_aliases_file }}
+# {{ ansible_managed }}
+
+{% for opt, val in dma_aliases.items()                                       %}
+{{ opt }}: {{ val }}
+{% endfor                                                                    %}
+
+# vim: set sw=2 ts=2 et :
+# eof
