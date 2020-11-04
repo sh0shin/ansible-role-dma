@@ -54,5 +54,8 @@ dma_aliases:
   root: root@localhost
   "*": root@localhost
 
+# misc
+dma_freebsd_update_cfg_file: "/etc/freebsd-update.conf"
+
 # vim: set syn=yaml sw=2 ts=2 et colorcolumn=160 :
 # eof

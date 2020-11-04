@@ -153,5 +153,18 @@
         and ansible_os_family | string in dma_os_family_supported
   tags: [ dma ]
 
+- name: dma config (freebsd-update.conf IgnorePaths)
+  lineinfile:
+    path: '{{ dma_freebsd_update_cfg_file }}'
+    line: 'IgnorePaths {{ dma_cfg_file }}'
+    regex: '^IgnorePaths {{ dma_cfg_file }}'
+    insertafter: '^IgnorePaths.*$'
+    state: present
+    backup: yes
+  when: dma_enabled
+        and ansible_os_family | string in dma_os_family_supported
+        and ansible_os_family == 'FreeBSD'
+  tags: [ dma ]
+
 # vim: set syn=yaml sw=2 ts=2 et colorcolumn=160 :
 # eof
