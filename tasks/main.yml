@@ -34,6 +34,7 @@
 - name: mail (freebsd directory)
   file:
     dest: '{{ dma_mailer_cfg_file | dirname }}'
+    mode: '{{ dma_dir_mode }}'
     state: directory
   when: dma_enabled
         and ansible_os_family | string in dma_os_family_supported
